@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="images">
+        <item>@drawable/android1</item>
+        <item>@drawable/android2</item>
+        <item>@drawable/android3</item>
+        <item>@drawable/android4</item>
+        <item>@drawable/android5</item>
+        <item>@drawable/android6</item>
+        <item>@drawable/android7</item>
+        <item>@drawable/android8</item>
+        <item>@drawable/android9</item>
+        <item>@drawable/android10</item>
+            </string-array>
+</resources>
