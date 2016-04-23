@@ -1,6 +1,7 @@
 package com.example.admin.instacoder;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.effect.Effect;
 import android.media.effect.EffectContext;
@@ -22,8 +23,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class AddImageActivity extends AppCompatActivity implements GLSurfaceView.Renderer {
     private static final int REQUEST_CODE = 1;
-    private Bitmap bitmap;
-
     private GLSurfaceView mEffectView;
     private int[] mTextures = new int[2];
     private EffectContext mEffectContext;
@@ -39,7 +38,7 @@ public class AddImageActivity extends AppCompatActivity implements GLSurfaceView
     }
 
     String LOG_TAG = "myinstaLog";
-    int ImageId;
+    Bitmap bmp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +53,19 @@ public class AddImageActivity extends AppCompatActivity implements GLSurfaceView
         mEffectView.setRenderer(this);
         mEffectView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
         mCurrentEffect = R.id.none;
-        Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("image_tt");
-        Log.d(LOG_TAG, "myinstaLog8888 " + String.valueOf(bitmap));
+
+        Bundle extras = getIntent().getExtras();
+
+        try {
+
+            byte[] b = extras.getByteArray("picture");
+            bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
+
+        } catch (Exception e) {
+            Log.d(LOG_TAG, "myinstaLog");
+            bmp = BitmapFactory.decodeResource(getResources(),
+                    R.drawable.pic1);
+        }
     }
 
     private void loadTextures() {
@@ -63,9 +73,8 @@ public class AddImageActivity extends AppCompatActivity implements GLSurfaceView
         // Generate textures
         GLES20.glGenTextures(2, mTextures, 0);
         // Load input bitmap
-        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), 2130837581);             //put it here
-        Log.d(LOG_TAG, "myinstaLog11 ");
-        Bitmap bitmap = (Bitmap) getIntent().getParcelableExtra("byteArray");
+
+        Bitmap bitmap = bmp;
 
         mImageWidth = bitmap.getWidth();
         mImageHeight = bitmap.getHeight();
@@ -271,7 +280,6 @@ public class AddImageActivity extends AppCompatActivity implements GLSurfaceView
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

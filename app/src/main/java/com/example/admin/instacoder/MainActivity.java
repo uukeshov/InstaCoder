@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mAdView = (AdView) findViewById(R.id.ad_view);
         Log.d(LOG_TAG, "Start advertisment");
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("820DF03930E923D579F0E0C77AD7C340")
                 .build();
         // Start loading the ad in the background.
         mAdView.loadAd(adRequest);
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         gv1.setAdapter(new ImageGridAdapter(MainActivity.this, getApplicationContext(),
                 R.layout.row_grid, getData()));
 
-        Log.d(LOG_TAG, "myinstaLog1" + String.valueOf(R.drawable.android2));
 /*
         gv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(
                             getApplicationContext(),
                             ListImagesActivity.class);
-                    int im = R.drawable.android2;
+                    int im = R.drawable.pic1;
                     i.putExtra("imageid", im);
 
                     startActivity(i);
@@ -93,9 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -106,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.listmage) {
+            Intent intent2 = new Intent(this, ListImagesActivity.class);
+            startActivity(intent2);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -5,13 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -54,20 +54,15 @@ public class ImageGridAdapter extends ArrayAdapter<ImageItem> {
         holder.image.setImageBitmap(item.getImage());
         row.setId(position);
 
-        Log.d("testtest1", String.valueOf(holder.image.getId()));
-        Log.d("testtest2", String.valueOf(holder.image.getTag()));
-        Log.d("testtest3", String.valueOf(holder.image.getDrawingCache()));
-        row.setOnClickListener(new OnItemClickListener(position, String.valueOf(holder.image.getId())));
+        row.setOnClickListener(new OnItemClickListener(position));
         return row;
     }
 
     private class OnItemClickListener implements View.OnClickListener {
         private int mPosition;
-        private String image_t;
 
-        OnItemClickListener(int position, String image_tt) {
+        OnItemClickListener(int position) {
             mPosition = position;
-            image_t = image_tt;
 
         }
 
@@ -75,13 +70,12 @@ public class ImageGridAdapter extends ArrayAdapter<ImageItem> {
         public void onClick(View arg0) {
 
             Intent myIntent = new Intent(context, AddImageActivity.class);
-
-            // your bitmap
             ImageItem item = getItem(mPosition);
-
-            myIntent.putExtra("ImageBitmap", item.getImage());
-            myIntent.putExtra("position", String.valueOf(mPosition));
-            myIntent.putExtra("image_tt", item.getImage());
+            Bitmap bitmap = item.getImage();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] b = baos.toByteArray();
+            myIntent.putExtra("picture", b);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(myIntent);
 
