@@ -14,9 +14,6 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-/**
- * Created by dimsob on 08.04.16.
- */
 public class ImageGridAdapter extends ArrayAdapter<ImageItem> {
     private Context context;
     private Activity activity;

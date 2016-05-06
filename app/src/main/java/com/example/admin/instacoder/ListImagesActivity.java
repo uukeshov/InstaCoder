@@ -32,7 +32,7 @@ public class ListImagesActivity extends AppCompatActivity {
         mAdView = (AdView) findViewById(R.id.ad_view);
         Log.d(LOG_TAG, "Start advertisment");
         AdRequest adRequest = new AdRequest.Builder()
-             //   .addTestDevice("820DF03930E923D579F0E0C77AD7C340")
+                .addTestDevice("820DF03930E923D579F0E0C77AD7C340")
                 .build();
         // Start loading the ad in the background.
         mAdView.loadAd(adRequest);

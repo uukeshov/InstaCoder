@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_constant">Constant</string>
     <string name="title_activity_add_image">AddImageActivity</string>
-    <string name="title_activity_list_images">ListImagesActivity</string>
+    <string name="title_activity_list_images">InstaCoder</string>
     <string name="banner_ad_unit_id">ca-app-pub-9610922161998342/1956988715</string>
     <string name="none">None</string>
     <string name="autofix">Autofix</string>
